@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="免费动漫网站 - 提供最新热门日漫、国漫、韩漫在线观看，高清无广告，海量番剧资源，支持手机与PC端流畅阅读。">
+    <meta name="keywords" content="免费动漫网站,在线看漫画,免费番剧,日漫推荐,国漫排行">
+    <title>免费动漫网站 - 最新热门番剧与国漫在线观看平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --secondary-color: #2f3542;
+            --bg-color: #f1f2f6;
+            --card-bg: #ffffff;
+            --text-main: #2f3542;
+            --text-sub: #747d8c;
+            --border-radius: 12px;
+            --container-width: 1200px;
+            --nav-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: var(--card-bg);
+            height: var(--nav-height);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--bg-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            width: 300px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: var(--text-sub);
+        }
+
+        /* 首屏 Hero */
+        .hero {
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 分类导航 */
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .cat-tag {
+            padding: 8px 24px;
+            background: var(--card-bg);
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-sub);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            transition: all 0.3s;
+        }
+
+        .cat-tag:hover, .cat-tag.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* 内容区域 */
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-title h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-right: 15px;
+        }
+
+        .section-title .line {
+            flex: 1;
+            height: 2px;
+            background: #e1e1e1;
+        }
+
+        /* 番剧卡片网格 */
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .anime-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .anime-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-cover {
+            position: relative;
+            width: 100%;
+            padding-top: 140%; /* 5:7 aspect ratio */
+            background-color: #eee;
+        }
+
+        .card-cover img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--text-sub);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 重点推荐区 */
+        .featured-section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .featured-main {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 100%;
+            min-height: 350px;
+        }
+
+        .featured-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 30px;
+            color: white;
+        }
+
+        .featured-overlay h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .featured-overlay p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .featured-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .featured-item {
+            display: flex;
+            gap: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .featured-item:hover {
+            background: #f8f9fa;
+        }
+
+        .featured-item img {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .featured-item-info {
+            flex: 1;
+        }
+
+        .featured-item-info h4 {
+            font-size: 15px;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .featured-item-info p {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        /* 常见问题 */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-sub);
+            font-size: 14px;
+            display: none;
+            border-top: 1px solid #f1f2f6;
+            padding-top: 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--secondary-color);
+            color: #a4b0be;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* 简化移动端展示 */
+            }
+            
+            .search-box {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .featured-section {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-main {
+                min-height: 250px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .anime-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                <span>动漫</span>公社
+            </a>
+            <nav class="nav-menu">
+                <a href="#" class="active">首页</a>
+                <a href="#">日漫</a>
+                <a href="#">国漫</a>
+                <a href="#">韩漫</a>
+                <a href="#">剧场版</a>
+                <a href="#">排行榜</a>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="搜索番剧、漫画...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>免费动漫网站</h1>
+            <p>海量高清番剧、独家连载漫画免费看，告别会员墙，畅享二次元世界。</p>
+        </section>
+
+        <!-- 分类筛选 -->
+        <div class="category-nav">
+            <a href="#" class="cat-tag active">全部</a>
+            <a href="#" class="cat-tag">热血</a>
+            <a href="#" class="cat-tag">恋爱</a>
+            <a href="#" class="cat-tag">搞笑</a>
+            <a href="#" class="cat-tag">悬疑</a>
+            <a href="#" class="cat-tag">奇幻</a>
+            <a href="#" class="cat-tag">科幻</a>
+        </div>
+
+        <!-- 重点推荐 -->
+        <section class="featured-section">
+            <div class="featured-main">
+                <img src="https://picsum.photos/seed/animehero/800/600" alt="热门推荐">
+                <div class="featured-overlay">
+                    <span style="background:var(--primary-color); padding:2px 8px; border-radius:4px; font-size:12px; margin-bottom:10px; display:inline-block;">本周热门</span>
+                    <h3>星际争霸：觉醒</h3>
+                    <p>在遥远的未来，人类与外星种族的战争爆发。主角林峰意外觉醒了远古时代的战斗基因，带领人类舰队反击，揭开宇宙最深层的秘密。</p>
+                    <a href="#" class="btn">立即观看</a>
+                </div>
+            </div>
+            <div class="featured-list">
+                <div class="section-title" style="margin-bottom:10px;">
+                    <h2>热门推荐</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="featured-item">
+                    <img src="https://picsum.photos/seed/anime1/100/140" alt="封面">
+                    <div class="featured-item-info">
+                        <h4>魔法学院：转校生</h4>
+                        <p>更新至第12话 | 9.8分</p>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <img src="https://picsum.photos/seed/anime2/100/140" alt="封面">
+                    <div class="featured-item-info">
+                        <h4>都市修仙传</h4>
+                        <p>更新至第88话 | 9.6分</p>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <img src="https://picsum.photos/seed/anime3/100/140" alt="封面">
+                    <div class="featured-item-info">
+                        <h4>刀剑神域：彼岸游境</h4>
+                        <p>更新至第5话 | 9.5分</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 热门番剧网格 -->
+        <section class="anime-section">
+            <div class="section-title">
+                <h2>最新更新</h2>
+                <div class="line"></div>
+            </div>
+            <div class="anime-grid">
+                <article class="anime-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/manga1/300/420" alt="封面">
+                        <span class="card-tag">连载中</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">鬼灭之刃：无限列车篇</h3>
+                        <div class="card-meta">
+                            <span>🔥 2.3w热度</span>
+                            <span>HD</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="anime-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/manga2/300/420" alt="封面">
+                        <span class="card-tag">完结</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">海贼王</h3>
+                        <div class="card-meta">
+                            <span>🔥 5.1w热度</span>
+                            <span>1080P</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="anime-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/manga3/300/420" alt="封面">
+                        <span class="card-tag">连载中</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">咒术回战</h3>
+                        <div class="card-meta">
+                            <span>🔥 1.8w热度</span>
+                            <span>HD</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="anime-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/manga4/300/420" alt="封面">
+                        <span class="card-tag">连载中</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">进击的巨人</h3>
+                        <div class="card-meta">
+                            <span>🔥 4.2w热度</span>
+                            <span>4K</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="anime-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/manga5/300/420" alt="封面">
+                        <span class="card-tag">连载中</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">我的英雄学院</h3>
+                        <div class="card-meta">
+                            <span>🔥 1.2w热度</span>
+                            <span>HD</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="anime-card">
+                    <div class="card-cover">
+                        <img src="https://picsum.photos/seed/manga6/300/420" alt="封面">
+                        <span class="card-tag">连载中</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">名侦探柯南</h3>
+                        <div class="card-meta">
+                            <span>🔥 3.5w热度</span>
+                            <span>HD</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 60px;">
+                <a href="#" class="btn" style="background: white; color: var(--text-main); border: 1px solid #ddd;">加载更多番剧</a>
+            </div>
+        </section>
+
+        <!-- 常见问题 -->
+        <section class="faq-section">
+            <div class="section-title" style="justify-content: center;">
+                <h2>常见问题</h2>
+                <div class="line"></div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">这个网站是完全免费的吗？</div>
+                <div class="faq-answer">是的，我们致力于为用户提供完全免费的高质量动漫资源，不设任何观看门槛。</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">观看是否需要注册账号？</div>
+                <div class="faq-answer">不需要。您可以直接点击任意番剧开始观看，无需注册登录，保护您的个人隐私。</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">支持哪些设备观看？</div>
+                <div class="faq-answer">网站采用响应式设计，完美支持电脑端浏览器、平板电脑以及各类智能手机。</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">画质如何保证？</div>
+                <div class="faq-answer">我们提供从标清(HD)到超高清(4K)的多种清晰度选择，确保您获得最佳的视觉体验。</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <p style="font-size: 14px; line-height: 1.8;">
+                        动漫公社是一个专注于二次元文化的免费动漫网站，致力于为全球动漫爱好者提供最新、最全、最流畅的在线观看服务。我们尊重版权，同时努力在合规范围内分享优质内容。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">日漫推荐</a></li>
+                        <li><a href="#">国漫精选</a></li>
+                        <li><a href="#">排行榜</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">观看指南</a></li>
+                        <li><a href="#">播放器设置</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">联系站长</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">QQ交流群</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 动漫公社 版权所有. 本站内容仅供学习交流使用，请支持正版动漫。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ 交互逻辑
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // 分类标签交互逻辑
+        document.querySelectorAll('.cat-tag').forEach(tag => {
+            tag.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.cat-tag').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+            });
+        });
+    </script>
+</body>
+                              </html>
