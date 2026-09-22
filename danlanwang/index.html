@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="淡蓝网是国内领先的成人健康与情感交流社区，提供专业的两性健康资讯、情感心理咨询、私密健康问答及互助服务。">
+    <meta name="keywords" content="淡蓝网,成人健康,情感咨询,两性关系,性健康,心理咨询,淡蓝">
+    <title>淡蓝网-专业成人健康与情感咨询交流平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary-color: #1e40af;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 1.2em;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Main Content Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        /* Content Section */
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .article-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .article-img {
+            width: 100%;
+            height: 160px;
+            background-color: #e2e8f0;
+            object-fit: cover;
+        }
+
+        .article-body {
+            padding: 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-tag {
+            font-size: 0.75rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Sidebar */
+        .sidebar-widget {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--bg-color);
+        }
+
+        .faq-list li {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.8rem;
+        }
+
+        .faq-list li:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .faq-answer {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .hot-topic-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .hot-rank {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--border-color);
+            margin-right: 0.5rem;
+            width: 1.5rem;
+        }
+
+        .hot-rank.top-1 { color: #ef4444; }
+        .hot-rank.top-2 { color: #f97316; }
+        .hot-rank.top-3 { color: #eab308; }
+
+        .hot-link {
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .hot-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container nav-container">
+        <a href="#" class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                <path d="M12 2a10 10 0 0 1 10 10"></path>
+                <path d="M12 12 2.1 12"></path>
+            </svg>
+            淡蓝网
+        </a>
+        <nav class="nav-links">
+            <a href="#">首页</a>
+            <a href="#">健康资讯</a>
+            <a href="#">情感咨询</a>
+            <a href="#">社区论坛</a>
+            <a href="#">公益服务</a>
+        </nav>
+        <div class="nav-actions">
+            <a href="#" class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">登录</a>
+            <a href="#" class="btn btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">注册</a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>专业健康与情感咨询交流平台</h1>
+        <p>致力于提供科学、客观、私密的健康资讯与情感支持。在这里，您可以获取专业的两性健康知识，参与互助讨论，或寻求专业的心理咨询。</p>
+        <div class="hero-tags">
+            <span class="hero-tag">两性健康</span>
+            <span class="hero-tag">情感心理</span>
+            <span class="hero-tag">隐私保护</span>
+            <span class="hero-tag">专业咨询</span>
+        </div>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="#" class="btn" style="background: white; color: var(--primary-color);">浏览健康资讯</a>
+            <a href="#" class="btn btn-outline" style="border-color: white; color: white;">加入社区</a>
+        </div>
+    </div>
+</section>
+
+<main class="container main-grid">
+    <!-- Left Content -->
+    <section class="content-area">
+        <h2 class="section-title">最新健康资讯</h2>
+        
+        <div class="article-grid">
+            <article class="article-card">
+                <img src="https://picsum.photos/seed/health1/400/250" alt="男性健康科普" class="article-img">
+                <div class="article-body">
+                    <span class="article-tag">男性健康</span>
+                    <h3 class="article-title">了解男性生理周期：科学管理健康的关键</h3>
+                    <p class="article-excerpt">男性生理健康同样需要关注。本文将为您解析男性身体机能的变化规律，以及如何通过日常饮食和作息进行科学管理。</p>
+                    <div class="article-meta">
+                        <span>2023-10-24</span>
+                        <span>阅读 2.4k</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <img src="https://picsum.photos/seed/health2/400/250" alt="女性健康" class="article-img">
+                <div class="article-body">
+                    <span class="article-tag">女性健康</span>
+                    <h3 class="article-title">女性生理期护理指南：从饮食到心理调节</h3>
+                    <p class="article-excerpt">月经是女性健康的晴雨表。本文详细介绍了经期前后的注意事项、营养补充建议以及缓解痛经的实用方法。</p>
+                    <div class="article-meta">
+                        <span>2023-10-23</span>
+                        <span>阅读 3.1k</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <img src="https://picsum.photos/seed/health3/400/250" alt="性病预防" class="article-img">
+                <div class="article-body">
+                    <span class="article-tag">预防保健</span>
+                    <h3 class="article-title">常见性传播疾病的早期症状与预防措施</h3>
+                    <p class="article-excerpt">了解HIV、梅毒等性传播疾病的基本知识。本文重点强调了安全性行为的重要性，并提供了实用的自我检测建议。</p>
+                    <div class="article-meta">
+                        <span>2023-10-22</span>
+                        <span>阅读 5.8k</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <img src="https://picsum.photos/seed/health4/400/250" alt="情感关系" class="article-img">
+                <div class="article-body">
+                    <span class="article-tag">情感关系</span>
+                    <h3 class="article-title">如何建立健康和谐的亲密关系？</h3>
+                    <p class="article-excerpt">沟通是关系的基石。本文分享了几种增进伴侣间理解与信任的沟通技巧，帮助您解决常见的情感困扰。</p>
+                    <div class="article-meta">
+                        <span>2023-10-21</span>
+                        <span>阅读 1.9k</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="content-card" style="margin-top: 2rem; text-align: center;">
+            <a href="#" class="btn btn-primary">查看更多资讯</a>
+        </div>
+    </section>
+
+    <!-- Right Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-widget">
+            <h3 class="sidebar-title">热门话题</h3>
+            <ul class="faq-list">
+                <li>
+                    <span class="hot-rank top-1">1</span>
+                    <a href="#" class="hot-link">如何正确使用安全套？</a>
+                </li>
+                <li>
+                    <span class="hot-rank top-2">2</span>
+                    <a href="#" class="hot-link">心理咨询师如何选择？</a>
+                </li>
+                <li>
+                    <span class="hot-rank top-3">3</span>
+                    <a href="#" class="hot-link">婚前体检必查项目清单</a>
+                </li>
+                <li>
+                    <span class="hot-rank">4</span>
+                    <a href="#" class="hot-link">多囊卵巢综合征的饮食</a>
+                </li>
+                <li>
+                    <span class="hot-rank">5</span>
+                    <a href="#" class="hot-link">长期禁欲对健康的影响</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-widget">
+            <h3 class="sidebar-title">常见问题 (FAQ)</h3>
+            <ul class="faq-list">
+                <li>
+                    <span class="faq-question">在淡蓝网咨询是匿名的吗？</span>
+                    <span class="faq-answer">是的，我们高度重视用户隐私。在公开社区中，您可以匿名发帖；在付费咨询中，我们采用加密通讯方式保护您的身份信息。</span>
+                </li>
+                <li>
+                    <span class="faq-question">如何判断是否需要看心理医生？</span>
+                    <span class="faq-answer">如果您感到持续的情绪低落、焦虑严重影响生活，或者睡眠饮食出现严重问题，建议寻求专业帮助。</span>
+                </li>
+                <li>
+                    <span class="faq-question">网站提供哪些类型的咨询服务？</span>
+                    <span class="faq-answer">我们提供情感咨询、性健康咨询、心理咨询以及性病预防指导等综合服务。</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-widget" style="background: linear-gradient(to right, #eff6ff, #ffffff); border: 1px solid #bfdbfe;">
+            <h3 class="sidebar-title">需要帮助？</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #1e40af;">点击下方按钮，获取专业的公益指导或预约咨询。</p>
+            <a href="#" class="btn btn-primary" style="width: 100%; text-align: center;">立即咨询</a>
+        </div>
+    </aside>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo" style="color: white; margin-bottom: 1rem;">
+                    淡蓝网
+                </div>
+                <p style="font-size: 0.9rem; line-height: 1.6;">
+                    淡蓝网是一个专注于两性健康与情感交流的公益平台。我们致力于消除社会偏见，提供科学、客观的健康知识，为用户提供温暖、安全的交流环境。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">平台简介</a></li>
+                    <li><a href="#">团队介绍</a></li>
+                    <li><a href="#">发展历程</a></li>
+                    <li><a href="#">加入我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>服务指南</h4>
+                <ul>
+                    <li><a href="#">健康资讯</a></li>
+                    <li><a href="#">社区规范</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">使用条款</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系方式</h4>
+                <ul>
+                    <li>客服热线：400-xxx-xxxx</li>
+                    <li>邮箱：support@danlan.com</li>
+                    <li>工作时间：9:00 - 21:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 淡蓝网 版权所有. 本网站内容仅供科普参考，不作为医疗诊断依据。</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
