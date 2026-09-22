@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="栏目规划网提供专业的网站栏目架构设计、导航结构优化及内容管理方案，帮助企业和个人快速搭建高效、易用的网页层级体系。">
+    <meta name="keywords" content="栏目规划,网站栏目,导航设计,网站架构,内容管理">
+    <title>栏目规划-网站栏目架构设计与导航优化指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary-color: #64748b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部 */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+            padding: 8px 0;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* 核心内容区 */
+        main {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+        }
+
+        /* 栏目规划流程 */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .process-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(37, 99, 235, 0.1);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .process-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* 模板展示 */
+        .template-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 80px;
+        }
+
+        .template-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 0;
+        }
+
+        .template-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: background 0.2s;
+        }
+
+        .template-item:last-child {
+            border-bottom: none;
+        }
+
+        .template-item:hover {
+            background-color: #f1f5f9;
+        }
+
+        .template-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .template-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .template-desc {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* 常见问题 */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+
+        .faq-item h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-radius: var(--radius);
+            margin-bottom: 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary-color);
+            padding: 12px 32px;
+            border-radius: var(--radius);
+            font-weight: 700;
+        }
+
+        .btn-white:hover {
+            background: #f8fafc;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .process-grid, .template-list, .faq-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .template-item {
+                border-bottom: none;
+                border: 1px solid var(--border-color);
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <path d="M10 7h4"></path>
+                    <path d="M17 10v4"></path>
+                    <path d="M7 17v-4"></path>
+                    <path d="M10 14h4"></path>
+                </svg>
+                栏目规划
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">设计指南</a></li>
+                    <li><a href="#">案例展示</a></li>
+                    <li><a href="#">工具下载</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-primary">开始规划</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>构建清晰的网站栏目架构</h1>
+            <p>专业的栏目规划服务，帮助您优化网站导航结构，提升用户体验，确保内容逻辑严密，符合搜索引擎抓取习惯。</p>
+            <a href="#" class="btn-primary">获取设计方案</a>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <!-- 流程部分 -->
+        <section class="process-section">
+            <div class="section-title">
+                <h2>科学的规划流程</h2>
+                <p>遵循用户心理模型，分步骤构建完美栏目体系</p>
+            </div>
+            <div class="process-grid">
+                <article class="process-card">
+                    <div class="step-number">01</div>
+                    <h3>需求分析</h3>
+                    <p>深入了解网站定位、目标受众及核心业务，明确网站需要承载的信息类型和用户访问路径。</p>
+                </article>
+                <article class="process-card">
+                    <div class="step-number">02</div>
+                    <h3>逻辑分类</h3>
+                    <p>将海量内容进行逻辑归档，采用层级化结构，确保用户能快速定位所需信息，避免迷航。</p>
+                </article>
+                <article class="process-card">
+                    <div class="step-number">03</div>
+                    <h3>命名规范</h3>
+                    <p>制定统一的命名规则，使用简短、语义明确的词汇，便于记忆和搜索引擎识别。</p>
+                </article>
+                <article class="process-card">
+                    <div class="step-number">04</div>
+                    <h3>用户体验优化</h3>
+                    <p>通过面包屑导航、底部导航及内部链接策略，增强网站的可导航性和信息流转效率。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 模板展示 -->
+        <section class="template-section">
+            <div class="section-title">
+                <h2>常见行业栏目模板</h2>
+                <p>针对不同业务场景，提供经过验证的成熟栏目结构方案</p>
+            </div>
+            <div class="template-list">
+                <div class="template-item">
+                    <div class="template-header">
+                        <div class="template-title">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            企业官网模板
+                        </div>
+                    </div>
+                    <p class="template-desc">包含首页、关于我们、新闻动态、产品中心、解决方案、客户案例、联系我们等标准板块。</p>
+                    <div class="tags">
+                        <span class="tag">展示型</span>
+                        <span class="tag">服务型企业</span>
+                    </div>
+                </div>
+
+                <div class="template-item">
+                    <div class="template-header">
+                        <div class="template-title">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            教育培训模板
+                        </div>
+                    </div>
+                    <p class="template-desc">侧重课程展示、师资力量、学员评价、公开课直播、在线报名及常见问题解答。</p>
+                    <div class="tags">
+                        <span class="tag">转化型</span>
+                        <span class="tag">知识付费</span>
+                    </div>
+                </div>
+
+                <div class="template-item">
+                    <div class="template-header">
+                        <div class="template-title">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            社区论坛模板
+                        </div>
+                    </div>
+                    <p class="template-desc">以板块分类为核心，包含首页、热门话题、精华帖、用户中心、签到奖励及搜索功能。</p>
+                    <div class="tags">
+                        <span class="tag">互动型</span>
+                        <span class="tag">UGC内容</span>
+                    </div>
+                </div>
+
+                <div class="template-item">
+                    <div class="template-header">
+                        <div class="template-title">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            电商商城模板
+                        </div>
+                    </div>
+                    <p class="template-desc">强调商品分类、品牌专区、促销活动、购物车、个人中心及物流追踪入口。</p>
+                    <div class="tags">
+                        <span class="tag">交易型</span>
+                        <span class="tag">B2C/C2C</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <div class="section-title">
+                <h2>常见问题解答</h2>
+                <p>关于栏目规划的实施细节与注意事项</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>为什么网站栏目规划很重要？</h3>
+                    <p>合理的栏目规划是网站建设的骨架。它直接决定了用户的浏览体验和信息获取效率，同时也影响着搜索引擎对网站内容的抓取和收录。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>如何确定网站的层级深度？</h3>
+                    <p>通常建议不超过三层。层级过深会导致用户迷失，且不利于SEO。如果内容过多，应通过聚合页或分类标签进行分流。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>导航栏应该包含哪些核心栏目？</h3>
+                    <p>通常包括首页、关于我们、产品/服务、新闻动态、案例展示以及联系我们。具体需根据业务类型调整。</p>
+                </div>
+                <div class="faq-item">
+                    <h3>面包屑导航有什么作用？</h3>
+                    <p>面包屑导航提供了用户当前所在位置的层级路径，方便用户快速返回上级页面，也方便搜索引擎理解网站结构。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>需要专业的栏目架构设计？</h2>
+                <p>我们提供从需求梳理到落地实施的全方位咨询服务，让您的网站结构更加清晰、专业。</p>
+                <a href="#" class="btn-white">联系专家咨询</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>栏目规划</h3>
+                    <p>专注于为企业和个人提供网站栏目架构设计、导航系统优化及内容管理体系建设服务。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>服务项目</h4>
+                    <ul>
+                        <li><a href="#">网站架构设计</a></li>
+                        <li><a href="#">导航逻辑优化</a></li>
+                        <li><a href="#">内容管理方案</a></li>
+                        <li><a href="#">SEO结构建议</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>相关资源</h4>
+                    <ul>
+                        <li><a href="#">设计规范文档</a></li>
+                        <li><a href="#">案例库</a></li>
+                        <li><a href="#">工具下载</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li>电话：400-123-4567</li>
+                        <li>邮箱：support@lanmu.com</li>
+                        <li>地址：科技园创新大道88号</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 栏目规划网 版权所有.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
