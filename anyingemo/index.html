@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="暗影恶魔 - 深入探索暗影恶魔的传说、起源、分类及在奇幻文学与游戏中的形象解析。提供暗影恶魔图鉴、战斗策略与背景故事阅读。">
+    <meta name="keywords" content="暗影恶魔, 奇幻生物, 暗黑神话, 游戏怪物, 恶魔图鉴">
+    <title>暗影恶魔-奇幻生物图鉴与暗黑传说解析</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --bg-deep: #0a0b10;
+            --bg-card: #14161f;
+            --bg-card-hover: #1c1f2b;
+            --text-main: #e0e0e0;
+            --text-muted: #949aa3;
+            --accent-red: #d32f2f;
+            --accent-purple: #7b1fa2;
+            --accent-glow: rgba(123, 31, 162, 0.4);
+            --border-color: #2a2d3a;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-serif: "Georgia", "Times New Roman", serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent-purple);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(10, 11, 16, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-purple);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-main);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1f1c2c 0%, #0a0b10 70%);
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%237b1fa2" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #b39ddb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: linear-gradient(135deg, var(--accent-purple), #4a148c);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        /* 分类网格 */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-purple);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .grid-section {
+            padding: 60px 0;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-purple);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .card-img-placeholder {
+            height: 180px;
+            background-color: #2a2d3a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-img-placeholder::after {
+            content: 'IMAGE';
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.1);
+            letter-spacing: 5px;
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* 详细解析区 */
+        .analysis-section {
+            background-color: #0d0e14;
+            padding: 80px 0;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .analysis-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .analysis-text p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .analysis-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .analysis-list li::before {
+            content: '•';
+            color: var(--accent-purple);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .feature-box {
+            background: linear-gradient(145deg, #1a1d26, #0f1015);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-item {
+            margin-bottom: 30px;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* 数据统计 */
+        .stats-section {
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            background-color: #0c0d12;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 页脚 */
+        footer {
+            padding: 60px 0 30px;
+            background-color: #050608;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            margin-top: 15px;
+            max-width: 300px;
+        }
+
+        .footer-col h5 {
+            color: var(--text-main);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-purple);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 15px;
+                font-size: 0.85rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-brand p {
+                margin: 15px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <span>Shadow</span>Wiki
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">图鉴分类</a></li>
+                    <li><a href="#">背景故事</a></li>
+                    <li><a href="#">战斗指南</a></li>
+                    <li><a href="#">社区讨论</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>暗影恶魔</h1>
+                <p>探索深渊中的终极恐惧。深入解析暗影恶魔的起源、形态变异及其在奇幻文学与游戏中的核心地位。</p>
+                <a href="#introduction" class="btn">开始探索</a>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container stats-grid">
+                <div class="stat-item">
+                    <h3>12</h3>
+                    <p>主要亚种</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>危险等级</p>
+                </div>
+                <div class="stat-item">
+                    <h3>∞</h3>
+                    <p>传说数量</p>
+                </div>
+                <div class="stat-item">
+                    <h3>7</h3>
+                    <p>起源位面</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="grid-section container" id="introduction">
+            <h2 class="section-title">暗影恶魔分类</h2>
+            <div class="category-grid">
+                <!-- Card 1 -->
+                <article class="card">
+                    <div class="card-img-placeholder" style="background: linear-gradient(45deg, #1a1c2e, #2a2d3a);"></div>
+                    <div class="card-body">
+                        <span class="card-tag">经典形态</span>
+                        <h3 class="card-title">幽冥领主</h3>
+                        <p class="card-desc">最典型的暗影恶魔形态，拥有强大的单体控制能力和黑暗魔法，通常统御着下层位面的恶魔军团。</p>
+                        <div class="card-footer">
+                            <span>危险等级: S</span>
+                            <a href="#">查看详情 &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="card">
+                    <div class="card-img-placeholder" style="background: linear-gradient(45deg, #2e1c1c, #3a2d2d);"></div>
+                    <div class="card-body">
+                        <span class="card-tag">特殊变种</span>
+                        <h3 class="card-title">虚空行者</h3>
+                        <p class="card-desc">能够穿梭于现实与虚空之间的暗影恶魔，其身体由纯粹的暗能量构成，难以被物理攻击摧毁。</p>
+                        <div class="card-footer">
+                            <span>危险等级: A+</span>
+                            <a href="#">查看详情 &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="card">
+                    <div class="card-img-placeholder" style="background: linear-gradient(45deg, #1c2e1c, #2d3a2d);"></div>
+                    <div class="card-body">
+                        <span class="card-tag">共生体</span>
+                        <h3 class="card-title">暗影寄生者</h3>
+                        <p class="card-desc">体型较小的暗影恶魔，通常附着在大型生物或盔甲上，通过吸取宿主的生命力来增强自身。</p>
+                        <div class="card-footer">
+                            <span>危险等级: B</span>
+                            <a href="#">查看详情 &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="card">
+                    <div class="card-img-placeholder" style="background: linear-gradient(45deg, #1c1c2e, #2d2d3a);"></div>
+                    <div class="card-body">
+                        <span class="card-tag">远古存在</span>
+                        <h3 class="card-title">深渊巨口</h3>
+                        <p class="card-desc">传说中暗影恶魔的始祖之一，能够吞噬光线与记忆，栖息于最深的黑暗裂缝之中。</p>
+                        <div class="card-footer">
+                            <span>危险等级: SSS</span>
+                            <a href="#">查看详情 &rarr;</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Detailed Analysis Section -->
+        <section class="analysis-section">
+            <div class="container analysis-grid">
+                <div class="analysis-text">
+                    <h2>暗影恶魔的起源与特性</h2>
+                    <p>在暗黑奇幻的设定中，暗影恶魔并非单纯的生物，而是负面情绪与混乱能量的具象化产物。它们通常诞生于“深渊”或“虚空”位面，那里没有光，只有永恒的寂寥与腐蚀。</p>
+                    <p>与火元素或水元素不同，暗影恶魔没有固定的物理形态。它们可以随意压缩身体，化作利爪、阴影触手甚至无声的杀意，来适应不同的战斗环境。</p>
+                    <ul class="analysis-list">
+                        <li><strong>光抗性极高：</strong> 传统物理攻击对它们效果有限，光系魔法是主要克制手段。</li>
+                        <li><strong>群体意识：</strong> 低阶暗影恶魔往往像昆虫一样行动，但高阶个体拥有独立的智慧。</li>
+                        <li><strong>位面侵蚀：</strong> 它们的存在会逐渐同化周围环境，使该区域充满致幻迷雾。</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-item">
+                        <h4>生物构造</h4>
+                        <p>暗影恶魔的核心通常是一团燃烧的黑色火焰，被一层坚硬的暗物质外壳包裹。外壳破裂后，核心会暴露在空气中，造成周围环境的剧烈崩塌。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>弱点机制</h4>
+                        <p>尽管难以被物理击杀，但它们极度畏惧神圣能量和净化类法术。在神话传说中，只有“黎明之光”才能将其彻底从存在层面抹除。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>社会结构</h4>
+                        <p>暗影恶魔社会遵循残酷的“弱肉强食”法则。高阶恶魔通过吞噬低阶恶魔或灵魂来提升力量，这种自相残杀的特性使得它们难以形成庞大的统一联盟。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gaming Strategy Section -->
+        <section class="grid-section container">
+            <h2 class="section-title">游戏中的应对策略</h2>
+            <div class="category-grid">
+                <article class="card">
+                    <div class="card-body">
+                        <span class="card-tag">战斗技巧</span>
+                        <h3 class="card-title">保持距离</h3>
+                        <p class="card-desc">暗影恶魔的近战攻击速度极快，且带有减速效果。玩家应尽量利用远程武器或法术保持安全距离。</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-body">
+                        <span class="card-tag">装备建议</span>
+                        <h3 class="card-title">神圣抗性</h3>
+                        <p class="card-desc">在进入暗影区域前，装备带有“圣光护盾”或“黑暗抗性”属性的护甲是生存的关键。</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-body">
+                        <span class="card-tag">环境利用</span>
+                        <h3 class="card-title">光亮陷阱</h3>
+                        <p class="card-desc">利用火把或发光法术制造光源区域，暗影恶魔在强光下会变得虚弱并减速。</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span>Shadow</span>Wiki
+                    </a>
+                    <p>致力于收集与整理暗黑奇幻世界中的怪物图鉴、背景故事及游戏攻略，为冒险者提供详尽的资料参考。</p>
+                </div>
+                <div class="footer-col">
+                    <h5>资源导航</h5>
+                    <ul>
+                        <li><a href="#">怪物图鉴</a></li>
+                        <li><a href="#">地图解析</a></li>
+                        <li><a href="#">装备掉落表</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>社区</h5>
+                    <ul>
+                        <li><a href="#">冒险者公会</a></li>
+                        <li><a href="#">论坛讨论</a></li>
+                        <li><a href="#">提交新怪物</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>关于</h5>
+                    <ul>
+                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#">免责声明</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ShadowWiki. All rights reserved. 仅供学习与交流使用。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
